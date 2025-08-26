@@ -96,8 +96,6 @@ Both are open-source friendly and free to start.
 
 - Cloud providers (managed but with free tiers):
 
-    - AWS/GCP/Azure → more setup, but scale-ready. You’d typically use:
-
     - AWS → ECS (with Fargate) or Elastic Beanstalk
 
     - GCP → Cloud Run (works beautifully with Docker images)
