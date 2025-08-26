@@ -35,10 +35,21 @@ README.md
 **Step 1: Scaffold the project**  
 ```bash
 npx create-next-app@latest frontend --typescript --tailwind --eslint
+
 cd frontend
 ```
 
-**Step 2: Run the frontend locally**  
+**Step 2: Install UI components**  
+```bash
+npm install @radix-ui/react-dialog @radix-ui/react-dropdown-menu @radix-ui/react-tooltip
+```
+
+**Step 3: Configure shadcn/ui**  
+```bash
+npx shadcn@latest init
+```
+
+**Step 4: Run the frontend locally**  
 ```bash
 npm run dev
 ```
