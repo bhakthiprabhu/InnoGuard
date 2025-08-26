@@ -1,0 +1,32 @@
+# Python cache and environment files
+
+**pycache**/
+\*.py\[cod]
+\*.env
+
+# Virtual environment folder
+
+venv/
+
+# IDE settings
+
+.vscode/
+.idea/
+
+# Logs
+
+\*.log
+
+# Database files (if any local SQLite used)
+
+\*.db
+
+# Pytest cache
+
+.pytest\_cache/
+
+# MacOS system files
+
+.DS\_Store
+.env
+.venv/
