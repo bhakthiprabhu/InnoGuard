@@ -3,10 +3,12 @@
 **pycache**/
 \*.py\[cod]
 \*.env
+.env
 
 # Virtual environment folder
 
 venv/
+.venv/
 
 # IDE settings
 
@@ -28,5 +30,3 @@ venv/
 # MacOS system files
 
 .DS\_Store
-.env
-.venv/
