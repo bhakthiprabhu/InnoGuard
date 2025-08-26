@@ -9,16 +9,6 @@ InnoGuard solves this by acting as a **privacy-preserving data guardrail** for s
 
 ---
 
-## System Architecture 
-![alt text](image.png)
-
-Here’s the diagram showing the **“security guard / automatic anonymizer”** in the middle:
-
-- **Production Data** flows into the anonymizer.
-- For **Developers** → it outputs **fake identities + real values** (useful for testing).
-- For **Researchers** → it outputs **de-identified records with statistical integrity** (useful for analytics).
----
-
 ## Requirements
 
 - **Frontend**: Node.js ≥ 18, npm or yarn
