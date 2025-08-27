@@ -31,12 +31,13 @@ This ensures GDPR/HIPAA compliance while supporting research and development.
 ## Folder Structure
 ```json
 
+backend/
 ├── app
+│   ├── app.py
 │   ├── api
 │   │   ├── auth.py
 │   │   ├── patients.py
 │   │   └── schemas.py
-│   ├── app.py
 │   ├── core
 │   │   ├── config.py
 │   │   └── security.py
@@ -47,6 +48,7 @@ This ensures GDPR/HIPAA compliance while supporting research and development.
 ├── database
 │   ├── privacy_gateway-postgres-schema.sql
 │   └── seed_patients.py
+├── .env  
 ├── README.md
 └── requirements.txt
 ```

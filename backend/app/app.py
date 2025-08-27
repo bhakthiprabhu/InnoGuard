@@ -7,11 +7,6 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Health check
-@app.get("/")
-def health_check():
-    return {"status": "ok", "message": "Privacy Gateway is running 🚀"}
-
 # Include API router
 app.include_router(auth.router, prefix="", tags=["Auth"])
 app.include_router(patients.router, prefix="/patients", tags=["Patients"])
