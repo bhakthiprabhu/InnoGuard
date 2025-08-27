@@ -29,8 +29,7 @@ This ensures GDPR/HIPAA compliance while supporting research and development.
 * python-dotenv
 
 ## Folder Structure
-```json
-
+```
 backend/
 ├── app
 │   ├── app.py
@@ -52,7 +51,6 @@ backend/
 ├── README.md
 └── requirements.txt
 ```
-
 ## Setup Instructions
 
 ### 1. Clone Repository
