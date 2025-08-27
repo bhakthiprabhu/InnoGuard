@@ -1,36 +1,124 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# InnoGuard – Patient Data Dashboard
 
-## Getting Started
+InnoGuard is a **Next.js application** designed as a secure interface for handling sensitive patient data. It provides **role-based login**, **data visualization**, and **CSV export** functionality.  
 
-First, run the development server:
+This project demonstrates a modern, client-side rendered app with authentication, protected routes, and interactive dashboards.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## Features
+
+- **Role-based Login**  
+  Choose between **Doctor**, **Developer**, or **Researcher** roles.  
+  Authentication is handled via an API call to `/token`.
+
+- **Patient Dashboard** (`/patients`)  
+  - Fetches paginated patient data from an API.  
+  - Displays real-time statistics:  
+    - Total Patients  
+    - Average Age  
+    - Most Common Disease  
+  - Interactive table with pagination.  
+  - **Download CSV** export of patient data.
+
+- **Modern UI**  
+  Built with **TailwindCSS**, **Radix UI tooltips**, and **lucide-react icons**.
+
+---
+
+## Project Structure
+
+```
+frontend/
+├── public
+│   └── logo.png
+├── src
+│   ├── app
+│   │   ├── favicon.ico
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   └── patients
+│   │       └── page.tsx
+│   └── lib
+│       └── utils.ts
+├── components.json
+├── eslint.config.mjs
+├── next-env.d.ts
+├── next.config.ts
+├── package.json
+├── postcss.config.mjs
+├── README.md
+└── tsconfig.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- [Next.js 13+ (App Router)](https://nextjs.org/)  
+- [React](https://react.dev/)  
+- [TailwindCSS](https://tailwindcss.com/)  
+- [Radix UI](https://www.radix-ui.com/) (Tooltips)  
+- [Lucide Icons](https://lucide.dev/)  
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Setup & Installation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/your-username/innoguard.git
+   cd innoguard
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. **Install dependencies**
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-## Deploy on Vercel
+3. **Configure Environment**
+   Create a `.env.local` file in the root:
+   ```env
+   NEXT_PUBLIC_API_URL=http://localhost:8000
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. **Run the development server**
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   Navigate to [http://localhost:3000](http://localhost:3000).
+
+---
+
+## Usage
+
+### 1. Login (`/`)
+- Select a role (Doctor, Developer, Researcher).  
+- Click **Continue** → retrieves an access token and stores it in `localStorage`.  
+- Redirects to `/patients`.
+
+### 2. Patient Dashboard (`/patients`)
+- Fetches and displays patient records in a table.  
+- View real-time stats at the top.  
+- Paginate through results.  
+- Export data as **patients.csv**.
+
+---
+
+## Security Notes
+- Tokens are stored in `localStorage` for simplicity (replace with HttpOnly cookies in production).  
+- Role-based access is enforced by the API; the frontend only surfaces the role.  
+- Ensure HTTPS in production for secure transmission.
+
+---
+
+## License
+This project is licensed under the MIT License.
+
+---
