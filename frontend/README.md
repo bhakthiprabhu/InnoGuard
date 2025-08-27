@@ -111,6 +111,15 @@ frontend/
 
 ---
 
+## 📸 Screenshots (Optional)
+- Login page with role selection  
+![alt text](<public/home page.png>)
+
+- Dashboard with patient stats and table  
+![alt text](public/dashboard.png)
+
+---
+
 ## Security Notes
 - Tokens are stored in `localStorage` for simplicity (replace with HttpOnly cookies in production).  
 - Role-based access is enforced by the API; the frontend only surfaces the role.  
