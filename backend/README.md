@@ -4,7 +4,7 @@
 
 The Privacy Gateway is a **role-aware Privacy-as-a-Service Gateway** for hospital data. It allows different user roles to access patient information safely:
 
-* **Clinicians** → Full, original patient data.
+* **doctor** → Full, original patient data.
 * **Researchers** → De-identified patient data with pseudonymized IDs.
 * **Developers** → Fake identities with realistic values for testing.
 
@@ -148,7 +148,7 @@ All API accesses are logged with:
 * `actor_id`
 * `actor_role`
 * `action`
-* `patient_id` (real for clinicians/devs)
+* `patient_id` (real for doctor/devs)
 * `meta` (pseudonymized IDs for researchers)
 * `timestamp`
 
