@@ -28,6 +28,29 @@ This ensures GDPR/HIPAA compliance while supporting research and development.
 * Faker
 * python-dotenv
 
+## Folder Structure
+```json
+
+├── app
+│   ├── api
+│   │   ├── auth.py
+│   │   ├── patients.py
+│   │   └── schemas.py
+│   ├── app.py
+│   ├── core
+│   │   ├── config.py
+│   │   └── security.py
+│   ├── db
+│   │   └── connection.py
+│   └── services
+│       └── audit_service.py
+├── database
+│   ├── privacy_gateway-postgres-schema.sql
+│   └── seed_patients.py
+├── README.md
+└── requirements.txt
+```
+
 ## Setup Instructions
 
 ### 1. Clone Repository
@@ -77,6 +100,7 @@ python seed_patients.py
 ### 6. Run FastAPI Server
 
 ```bash
+cd app
 uvicorn app:app --reload
 ```
 
@@ -90,7 +114,7 @@ Server will be available at `http://127.0.0.1:8000`.
 GET /
 ```
 
-#### Generate Token (Dev/Test)
+#### Generate Token 
 
 ```http
 POST /token
@@ -117,7 +141,7 @@ Authorization: Bearer <your_token>
 
 ### 8. Audit Logging
 
-All API accesses are logged in `privacy_gateway.audit_logs` with:
+All API accesses are logged with:
 
 * `actor_id`
 * `actor_role`
@@ -129,10 +153,8 @@ All API accesses are logged in `privacy_gateway.audit_logs` with:
 
 ### 9. Notes
 
-* Demo keys and data are for development purposes only.
-* In production, integrate with KMS for key management and proper OIDC for authentication.
 * Ensure sensitive data is never exported in plaintext to untrusted users.
----
+
 ## License
 
 This project is licensed under the MIT License.

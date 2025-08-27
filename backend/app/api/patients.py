@@ -1,20 +1,29 @@
 from fastapi import APIRouter, Depends, HTTPException
-from utils.auth import get_current_role
-from utils.db import get_db_connection
-from utils.audit import log_audit
+from core.security import get_current_role
+from db.connection import get_db_connection
+from services.audit_service import log_audit
+import uuid
 
 router = APIRouter()
 
+# Map roles to the appropriate DB view/table
 ROLE_TO_VIEW = {
     "clinician": "privacy_gateway.patients",
     "researcher": "privacy_gateway.v_patients_researcher",
     "developer": "privacy_gateway.v_patients_developer"
 }
 
-@router.get("/")
+
+@router.get("/", summary="Get patients data")
 def get_patients(role: str = Depends(get_current_role)):
-    import uuid
-    user_id = str(uuid.uuid4())  # Replace with real user_id from JWT in prod
+    """
+    Return patient data based on user role:
+    - clinician → full raw patient data
+    - researcher → pseudonymized data
+    - developer → synthetic data
+    """
+    # Simulate a user ID (replace with real JWT sub in production)
+    user_id = str(uuid.uuid4())
 
     if role not in ROLE_TO_VIEW:
         log_audit(
@@ -25,6 +34,7 @@ def get_patients(role: str = Depends(get_current_role)):
         )
         raise HTTPException(status_code=403, detail="Forbidden")
 
+    # Connect to DB
     view_name = ROLE_TO_VIEW[role]
     conn = get_db_connection()
     cur = conn.cursor()
@@ -33,20 +43,24 @@ def get_patients(role: str = Depends(get_current_role)):
     cur.close()
     conn.close()
 
-    # Extract patient IDs (first column)
+    # Extract patient IDs for audit
     patient_ids = [row[0] for row in rows] if rows else []
 
-    # Only log real IDs for clinician/developer
-    patient_id_for_audit = patient_ids[0] if role in ["clinician", "developer"] and patient_ids else None
+    # Decide what to log
+    patient_id_for_audit = None
+    if role in ["clinician", "developer"] and patient_ids:
+        # log actual patient ID
+        patient_id_for_audit = patient_ids[0]
 
-    # For researchers, store pseudonymized IDs in meta
+    meta_info = {"returned_ids": patient_ids, "limit": 100}
+
     log_audit(
         actor_id=user_id,
         actor_role=role,
         action="VIEW_PATIENTS",
         outcome="SUCCESS",
         patient_id=patient_id_for_audit,
-        meta={"returned_ids": patient_ids, "limit": 100}
+        meta=meta_info
     )
 
     return {"role": role, "data": rows}
